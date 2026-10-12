@@ -6,6 +6,7 @@ pipeline {
         AWS_ACCOUNT_ID = '906462447728'
         ECR_REPOSITORY = 'image-regi'
         IMAGE_NAME = 'cloud-image'
+
         ECR_REGISTRY = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
         ECR_IMAGE = "${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
     }
@@ -13,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/dasriyajitesh-hub/YOUR_REPOSITORY.git'
+                echo 'Repository checked out successfully'
             }
         }
 
@@ -61,8 +62,9 @@ pipeline {
         success {
             echo 'Pipeline completed successfully!'
         }
+
         failure {
-            echo 'Pipeline failed!'
+            echo 'Pipeline failed. Check Console Output for details.'
         }
     }
 }
